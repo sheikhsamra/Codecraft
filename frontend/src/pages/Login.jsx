@@ -28,7 +28,7 @@ function Login() {
       setError("");
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         formData
       );
 
@@ -45,7 +45,7 @@ function Login() {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-[400px]">
+      <div className="bg-white p-8 rounded shadow-md w-100">
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
 
         {error && (
