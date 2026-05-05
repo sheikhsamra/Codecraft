@@ -7,10 +7,19 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-
 connectDB();
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://blog-nest-nine-topaz.vercel.app/"
+    ],
+    credentials: true
+  })
+);
+
+app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 
@@ -27,5 +36,5 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-// Vercel ke liye export
+// Vercel deployment ke liye
 module.exports = app;
