@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://blog-nest-nine-topaz.vercel.app"
+      "https://codecraft-qhx9b1qw3-samra-shaikhs-projects.vercel.app/"
     ],
     credentials: true
   })
