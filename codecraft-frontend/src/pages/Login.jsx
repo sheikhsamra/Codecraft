@@ -144,7 +144,7 @@ function Login() {
 
           <p className="mt-6 text-center text-gray-400">
             Don&apos;t have an account?{" "}
-            <Link to="/Profile" className="text-cyan-300 font-bold">
+            <Link to="/Signup" className="text-cyan-300 font-bold">
               Create account
             </Link>
           </p>
