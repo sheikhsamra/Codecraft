@@ -13,7 +13,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://codecraft-taupe-gamma.vercel.app"
+      "https://codecraft-taupe-gamma.vercel.app",
+      "https://codecraft-git-main-samra-shaikhs-projects.vercel.app"
     ],
     credentials: true
   })
