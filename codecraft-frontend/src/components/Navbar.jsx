@@ -70,7 +70,7 @@ function Navbar() {
             Home
           </Link>
 
-          <a href="#blogs" className="hover:text-fuchsia-500 transition">
+          <a href="/blogs" className="hover:text-fuchsia-500 transition">
             Blogs
           </a>
 
@@ -203,9 +203,9 @@ function Navbar() {
               Home
             </Link>
 
-            <a href="#blogs" onClick={() => setIsOpen(false)}>
+            <Link to="/blogs" className="hover:text-fuchsia-500 transition">
               Blogs
-            </a>
+            </Link>
 
             <a href="#categories" onClick={() => setIsOpen(false)}>
               Categories
@@ -231,6 +231,13 @@ function Navbar() {
                   className="text-fuchsia-400 font-semibold"
                 >
                   Write Blog
+                </Link>
+
+                <Link
+                  to="/my-blogs"
+                  className="font-semibold text-gray-300 hover:text-cyan-400 transition"
+                >
+                  My Blogs
                 </Link>
 
                 <Link

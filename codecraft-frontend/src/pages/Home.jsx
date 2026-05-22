@@ -1,76 +1,54 @@
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
   const user = JSON.parse(localStorage.getItem("user"));
+
   const [search, setSearch] = useState("");
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const headings = [
-  "Discover powerful stories",
-  "Share creative ideas",
-  "Write beautiful blogs"
-];
-
-const [headingIndex, setHeadingIndex] = useState(0);
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    setHeadingIndex((prev) => (prev + 1) % headings.length);
-  }, 3500);
-
-  return () => clearInterval(interval);
-}, []);
-
-  const blogs = [
-    {
-      id: 1,
-      title: "How to Start Your MERN Stack Journey",
-      category: "Development",
-      author: "Samra",
-      description:
-        "Learn the basic roadmap for becoming a MERN stack developer from scratch.",
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-      id: 2,
-      title: "Top UI Design Tips for Modern Websites",
-      category: "Design",
-      author: "BlogNest Team",
-      description:
-        "Improve your web design with gradients, spacing, typography, and layouts.",
-      image:
-        "https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Why Authentication Matters in Blog Apps",
-      category: "Security",
-      author: "Admin",
-      description:
-        "Understand JWT authentication, protected routes, and secure user login.",
-      image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-      id: 4,
-      title: "MongoDB Atlas for Beginners",
-      category: "Database",
-      author: "Samra",
-      description:
-        "A beginner-friendly guide to MongoDB Atlas, Compass, and collections.",
-      image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
-    }
+  const headings = [
+    "Discover powerful stories",
+    "Share creative ideas",
+    "Write beautiful blogs"
   ];
+
+  const [headingIndex, setHeadingIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeadingIndex((prev) => (prev + 1) % headings.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const getBlogs = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs`);
+      setBlogs(res.data.blogs || []);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Failed to fetch blogs");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
 
   const filteredBlogs = blogs.filter((blog) => {
     return (
-      blog.title.toLowerCase().includes(search.toLowerCase()) ||
-      blog.category.toLowerCase().includes(search.toLowerCase()) ||
-      blog.author.toLowerCase().includes(search.toLowerCase())
+      blog.title?.toLowerCase().includes(search.toLowerCase()) ||
+      blog.category?.toLowerCase().includes(search.toLowerCase()) ||
+      blog.author?.name?.toLowerCase().includes(search.toLowerCase())
     );
   });
+
+  const homeBlogs = filteredBlogs.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -85,53 +63,67 @@ useEffect(() => {
             <p className="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-cyan-300 mb-5">
               ✨ Modern MERN Blog Platform
             </p>
-<h1 className="hero-heading text-5xl md:text-7xl font-black leading-tight tracking-tight min-h-45">
-  <span className="block">
-    {headings[headingIndex].split(" ").map((word, wordIndex) => {
-      const wordsBefore = headings[headingIndex]
-        .split(" ")
-        .slice(0, wordIndex)
-        .join("");
 
-      return (
-        <span key={`${headingIndex}-${wordIndex}`} className="animated-word">
-          {word.split("").map((letter, letterIndex) => (
-            <span
-              key={`${headingIndex}-${wordIndex}-${letterIndex}`}
-              className="letter text-transparent bg-clip-text bg-linear-to-b from-fuchsia-400 via-purple-400 to-cyan-400"
-              style={{
-                animationDelay: `${
-                  (wordsBefore.length + letterIndex + wordIndex) * 0.05
-                }s`
-              }}
-            >
-              {letter}
-            </span>
-          ))}
-        </span>
-      );
-    })}
-  </span>
+            <h1 className="hero-heading text-5xl md:text-7xl font-black leading-tight tracking-tight min-h-45">
+              <span className="block">
+                {headings[headingIndex].split(" ").map((word, wordIndex) => {
+                  const wordsBefore = headings[headingIndex]
+                    .split(" ")
+                    .slice(0, wordIndex)
+                    .join("");
 
-  <span className="block mt-3 text-white text-5xl md:text-6xl ">
-    in one beautiful space.
-  </span>
-</h1>
+                  return (
+                    <span
+                      key={`${headingIndex}-${wordIndex}`}
+                      className="animated-word"
+                    >
+                      {word.split("").map((letter, letterIndex) => (
+                        <span
+                          key={`${headingIndex}-${wordIndex}-${letterIndex}`}
+                          className="letter text-transparent bg-clip-text bg-linear-to-b from-fuchsia-400 via-purple-400 to-cyan-400"
+                          style={{
+                            animationDelay: `${
+                              (wordsBefore.length + letterIndex + wordIndex) *
+                              0.05
+                            }s`
+                          }}
+                        >
+                          {letter}
+                        </span>
+                      ))}
+                    </span>
+                  );
+                })}
+              </span>
+
+              <span className="block mt-3 text-white text-5xl md:text-6xl">
+                in one beautiful space.
+              </span>
+            </h1>
 
             <p className="animate-fade-up-delay mt-6 text-gray-300 text-lg leading-relaxed max-w-xl">
-              Codecraft is an attractive blog platform where users can read,
+              CodeCraft is an attractive blog platform where users can read,
               write, search, and manage blogs with a secure MERN stack
               authentication system.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               {user ? (
-                <Link
-                  to="/profile"
-                  className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
-                >
-                  View Profile
-                </Link>
+                <>
+                  <Link
+                    to="/create-blog"
+                    className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
+                  >
+                    Write Blog
+                  </Link>
+
+                  <Link
+                    to="/profile"
+                    className="border border-white/20 px-7 py-3 rounded-full font-bold hover:bg-white/10 transition"
+                  >
+                    View Profile
+                  </Link>
+                </>
               ) : (
                 <>
                   <Link
@@ -170,12 +162,14 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Search Section */}
+      {/* Blogs Section */}
       <section id="blogs" className="max-w-7xl mx-auto px-6 py-16">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
           <div>
             <p className="text-fuchsia-400 font-semibold">Latest Blogs</p>
-            <h2 className="text-4xl font-black mt-2">Explore Articles</h2>
+            <h2 className="text-4xl font-black mt-2">
+              Explore User Articles
+            </h2>
           </div>
 
           <div className="w-full md:w-105">
@@ -205,76 +199,99 @@ useEffect(() => {
         </div>
 
         {/* Blog Cards */}
-        {filteredBlogs.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredBlogs.map((blog) => (
-              <div
-                key={blog.id}
-                className="group bg-white/10 border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:-translate-y-2 transition duration-300"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className="h-56 w-full object-cover group-hover:scale-110 transition duration-500"
-                  />
-                </div>
+        {loading ? (
+          <div className="text-center py-20 bg-white/10 border border-white/10 rounded-3xl">
+            <h3 className="text-2xl font-bold">Loading blogs...</h3>
+            <p className="text-gray-400 mt-2">
+              Please wait while blogs are loading from MongoDB.
+            </p>
+          </div>
+        ) : homeBlogs.length > 0 ? (
+          <>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {homeBlogs.map((blog) => (
+                <div
+                  key={blog._id}
+                  className="group bg-white/10 border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:-translate-y-2 transition duration-300"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="h-56 w-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+                  </div>
 
-                <div className="p-6">
-                  <span className="text-sm text-cyan-300 bg-cyan-400/10 px-3 py-1 rounded-full">
-                    {blog.category}
-                  </span>
+                  <div className="p-6">
+                    <span className="text-sm text-cyan-300 bg-cyan-400/10 px-3 py-1 rounded-full">
+                      {blog.category}
+                    </span>
 
-                  <h3 className="text-2xl font-bold mt-4 group-hover:text-fuchsia-400 transition">
-                    {blog.title}
-                  </h3>
+                    <h3 className="text-2xl font-bold mt-4 group-hover:text-fuchsia-400 transition">
+                      {blog.title}
+                    </h3>
 
-                  <p className="text-gray-300 mt-3 leading-relaxed">
-                    {blog.description}
-                  </p>
+                    <div
+                      className="text-gray-300 mt-3 leading-relaxed max-h-20 overflow-hidden"
+                      dangerouslySetInnerHTML={{ __html: blog.content }}
+                    />
 
-                  <div className="mt-6 flex justify-between items-center">
-                    <p className="text-sm text-gray-400">By {blog.author}</p>
-                    <button className="text-fuchsia-400 font-semibold hover:text-cyan-300 transition">
+                    <div className="mt-6 flex justify-between items-center">
+                      <p className="text-sm text-gray-400">
+                        By {blog.author?.name || "Unknown"}
+                      </p>
+
+                      <p className="text-sm text-gray-400">
+                        ⭐ {blog.averageRating || 0}
+                      </p>
+                    </div>
+
+                    <Link
+                      to={`/blogs/${blog._id}`}
+                      className="block mt-6 text-center text-fuchsia-400 font-semibold hover:text-cyan-300 transition"
+                    >
                       Read More →
-                    </button>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                to="/blogs"
+                className="inline-block bg-linear-to-r from-fuchsia-600 to-cyan-500 px-8 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
+              >
+                See More Blogs
+              </Link>
+            </div>
+          </>
         ) : (
           <div className="text-center py-20 bg-white/10 border border-white/10 rounded-3xl">
             <h3 className="text-2xl font-bold">No blogs found</h3>
             <p className="text-gray-400 mt-2">
-              Try searching with another keyword.
+              Publish your first blog from Write Blog.
             </p>
           </div>
         )}
       </section>
 
       {/* Featured Section */}
-      <section
-        id="featured"
-        className="max-w-7xl mx-auto px-6 py-16"
-      >
+      <section id="featured" className="max-w-7xl mx-auto px-6 py-16">
         <div className="bg-linear-to-r from-fuchsia-600 via-purple-600 to-cyan-500 rounded-3xl p-10 md:p-14 shadow-2xl">
           <p className="text-white/80 font-semibold">Featured</p>
           <h2 className="text-4xl font-black mt-3">
             Ready to publish your next big idea?
           </h2>
           <p className="text-white/80 mt-4 max-w-2xl">
-            Codecraft gives you a clean, modern, and secure platform to share your
-            thoughts with the world.
+            CodeCraft gives you a clean, modern, and secure platform to share
+            your thoughts with the world.
           </p>
         </div>
       </section>
 
       {/* About */}
-      <section
-        id="about"
-        className="max-w-7xl mx-auto px-6 pb-20"
-      >
+      <section id="about" className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-white/10 border border-white/10 p-7 rounded-3xl">
             <h3 className="text-xl font-bold text-fuchsia-400">Secure Auth</h3>
