@@ -70,9 +70,9 @@ function Navbar() {
             Home
           </Link>
 
-          <a href="/blogs" className="hover:text-fuchsia-500 transition">
+          <Link to="/blogs" className="hover:text-fuchsia-500 transition">
             Blogs
-          </a>
+          </Link>
 
           <a href="#categories" className="hover:text-fuchsia-500 transition">
             Categories
