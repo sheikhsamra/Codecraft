@@ -203,7 +203,7 @@ function Navbar() {
               Home
             </Link>
 
-            <Link to="/Blogs" className="hover:text-fuchsia-500 transition">
+            <Link to="/blogs" className="hover:text-fuchsia-500 transition">
               Blogs
             </Link>
 
