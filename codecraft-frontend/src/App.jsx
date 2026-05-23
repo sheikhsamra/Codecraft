@@ -14,20 +14,20 @@ import EditBlog from "./pages/EditBlog";
 import CategoryPage from "./pages/CategoryPage";
 import SavedBlogs from "./pages/SavedBlogs";
 import Features from "./pages/Features";
-import Featured from "./pages/Featured";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <div>
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
         <Route path="/features" element={<Features />} />
-        <Route path="/featured" element={<Featured />} />
         <Route path="/CategoryPage" element={<CategoryPage />} />
         <Route path="/blogs/:id" element={<BlogDetails />} />
         <Route path="/signup" element={<Signup />} />

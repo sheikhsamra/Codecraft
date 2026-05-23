@@ -78,10 +78,6 @@ function Navbar() {
             Categories
           </Link>
 
-          <Link to="/featured" className="hover:text-fuchsia-500 transition">
-            Featured
-          </Link>
-
           <Link to="/about" className="hover:text-fuchsia-500 transition">
             About
           </Link>
@@ -215,9 +211,6 @@ function Navbar() {
               Categories
             </Link>
 
-            <Link to="/featured" onClick={() => setIsOpen(false)}>
-              Featured
-            </Link>
 
             <Link to="/about" onClick={() => setIsOpen(false)}>
               About

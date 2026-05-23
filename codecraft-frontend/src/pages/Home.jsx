@@ -115,20 +115,20 @@ function Home() {
   const homeBlogs = filteredBlogs.slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-br from-fuchsia-700/30 via-purple-700/20 to-cyan-600/30"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-500/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-fuchsia-100 dark:from-fuchsia-900/30 via-purple-50 dark:via-purple-900/20 to-cyan-100 dark:to-cyan-900/30"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-500/20 dark:bg-fuchsia-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-3xl"></div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
           <div>
-            <p className="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-cyan-300 mb-5">
+            <p className="inline-block px-4 py-2 rounded-full bg-slate-900/10 dark:bg-white/10 border border-slate-900/10 dark:border-white/10 text-cyan-600 dark:text-cyan-300 mb-5">
               ✨ Modern MERN Blog Platform
             </p>
 
-            <h1 className="hero-heading text-5xl md:text-7xl font-black leading-tight tracking-tight min-h-45">
+            <h1 className="hero-heading text-5xl md:text-7xl font-black leading-tight tracking-tight min-h-45 text-slate-900 dark:text-white">
               <span className="block">
                 {headings[headingIndex].split(" ").map((word, wordIndex) => {
                   const wordsBefore = headings[headingIndex]
@@ -144,7 +144,7 @@ function Home() {
                       {word.split("").map((letter, letterIndex) => (
                         <span
                           key={`${headingIndex}-${wordIndex}-${letterIndex}`}
-                          className="letter text-transparent bg-clip-text bg-linear-to-b from-fuchsia-400 via-purple-400 to-cyan-400"
+                          className="letter text-transparent bg-clip-text bg-linear-to-b from-fuchsia-600 to-purple-600 dark:from-fuchsia-400 dark:via-purple-400 dark:to-cyan-400"
                           style={{
                             animationDelay: `${(wordsBefore.length + letterIndex + wordIndex) *
                               0.05
@@ -159,12 +159,12 @@ function Home() {
                 })}
               </span>
 
-              <span className="block mt-3 text-white text-5xl md:text-6xl">
+              <span className="block mt-3 text-5xl md:text-6xl text-slate-900 dark:text-white">
                 in one beautiful space.
               </span>
             </h1>
 
-            <p className="animate-fade-up-delay mt-6 text-gray-300 text-lg leading-relaxed max-w-xl">
+            <p className="animate-fade-up-delay mt-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-xl">
               CodeCraft is an attractive blog platform where users can read,
               write, search, and manage blogs with a secure MERN stack
               authentication system.
@@ -175,14 +175,14 @@ function Home() {
                 <>
                   <Link
                     to="/create-blog"
-                    className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
+                    className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition text-white"
                   >
                     Write Blog
                   </Link>
 
                   <Link
                     to="/profile"
-                    className="border border-white/20 px-7 py-3 rounded-full font-bold hover:bg-white/10 transition"
+                    className="border border-slate-900/20 dark:border-white/20 px-7 py-3 rounded-full font-bold hover:bg-slate-900/10 dark:hover:bg-white/10 transition"
                   >
                     View Profile
                   </Link>
@@ -191,14 +191,14 @@ function Home() {
                 <>
                   <Link
                     to="/signup"
-                    className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
+                    className="bg-linear-to-r from-fuchsia-600 to-cyan-500 px-7 py-3 rounded-full font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition text-white"
                   >
                     Start Writing
                   </Link>
 
                   <Link
                     to="/login"
-                    className="border border-white/20 px-7 py-3 rounded-full font-bold hover:bg-white/10 transition"
+                    className="border border-slate-900/20 dark:border-white/20 px-7 py-3 rounded-full font-bold hover:bg-slate-900/10 dark:hover:bg-white/10 transition"
                   >
                     Login
                   </Link>
@@ -227,25 +227,28 @@ function Home() {
 
       {/* Blogs Section */}
       <section id="blogs" className="max-w-7xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <p className="text-fuchsia-400 font-semibold uppercase tracking-widest text-sm mb-3">Explore Content</p>
-          <h2 className="text-5xl font-black mb-10">Latest Articles</h2>
-
-          <div className="max-w-3xl mx-auto mb-10">
-            <input
-              type="text"
-              placeholder="Search blogs by title, category, or author..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/10 border border-white/10 focus:border-cyan-400 outline-none px-6 py-5 rounded-[2rem] text-white placeholder:text-gray-400 shadow-2xl backdrop-blur-md transition-all"
-            />
-          </div>
-
-          <div className="flex justify-center">
-            <CategorySelector categories={categories} onSelect={setSearch} />
-          </div>
+        <div className="text-center mb-12">
+          <p className="text-fuchsia-600 dark:text-fuchsia-400 font-semibold uppercase tracking-widest text-sm mb-3">Explore Content</p>
+          <h2 className="text-5xl font-black text-slate-900 dark:text-white">Latest Articles</h2>
         </div>
 
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+          {/* Categories Left */}
+          <div className="flex-1 overflow-x-auto">
+             <CategorySelector categories={categories} onSelect={setSearch} />
+          </div>
+
+          {/* Search Bar Right - Smaller */}
+          <div className="w-full md:w-80 flex-shrink-0">
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 focus:border-cyan-500 outline-none px-5 py-3 rounded-2xl text-slate-900 dark:text-white placeholder:text-gray-500 shadow-sm transition-all"
+            />
+          </div>
+        </div>
         {/* Blog Cards */}
         {loading ? (
           <div className="text-center py-20 bg-white/10 border border-white/10 rounded-3xl">

@@ -287,12 +287,12 @@ function Profile() {
         )}
 
         {/* Tabs Section */}
-        <div className="flex gap-4 mb-10 p-1 bg-white/5 border border-white/10 rounded-2xl w-fit mx-auto">
+        <div className="flex gap-4 mb-10 p-1.5 bg-slate-900/50 border border-white/10 rounded-2xl w-fit mx-auto shadow-inner">
           <button
             onClick={() => setActiveTab("published")}
-            className={`px-8 py-3 rounded-xl font-bold transition duration-300 ${
+            className={`px-10 py-3.5 rounded-xl font-black transition-all duration-500 ${
               activeTab === "published"
-                ? "bg-white text-slate-950 shadow-lg scale-105"
+                ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-[0_0_20px_rgba(192,38,211,0.4)] scale-105"
                 : "text-gray-400 hover:text-white hover:bg-white/5"
             }`}
           >
@@ -300,9 +300,9 @@ function Profile() {
           </button>
           <button
             onClick={() => setActiveTab("saved")}
-            className={`px-8 py-3 rounded-xl font-bold transition duration-300 ${
+            className={`px-10 py-3.5 rounded-xl font-black transition-all duration-500 ${
               activeTab === "saved"
-                ? "bg-white text-slate-950 shadow-lg scale-105"
+                ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
                 : "text-gray-400 hover:text-white hover:bg-white/5"
             }`}
           >

@@ -93,11 +93,11 @@ function Blogs() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-slate-950 to-cyan-950 text-white px-4 py-14">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-14 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-5xl font-black">All Blogs</h1>
-          <p className="text-gray-400 mt-3">
+          <p className="text-gray-600 dark:text-gray-400 mt-3">
             Read blogs published by CodeCraft users.
           </p>
         </div>
@@ -108,18 +108,18 @@ function Blogs() {
             placeholder="Search blogs by title, category, or author..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-white/10 border border-white/10 p-4 rounded-2xl outline-none focus:border-cyan-400 text-white placeholder:text-gray-400"
+            className="w-full bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 p-4 rounded-2xl outline-none focus:border-cyan-500 text-slate-900 dark:text-white placeholder:text-gray-500 transition-colors"
           />
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-300">Loading blogs...</p>
+          <p className="text-center text-gray-500 dark:text-gray-300">Loading blogs...</p>
         ) : filteredBlogs.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogs.map((blog) => (
               <div
                 key={blog._id}
-                className="group bg-white/10 border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:-translate-y-3 hover:bg-white/15 hover:shadow-[0_20px_50px_rgba(6,182,212,0.15)] transition-all duration-500"
+                className="group bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-lg hover:-translate-y-3 hover:bg-slate-100 dark:hover:bg-white/15 hover:shadow-2xl transition-all duration-500"
               >
                 <div className="overflow-hidden">
                     <img

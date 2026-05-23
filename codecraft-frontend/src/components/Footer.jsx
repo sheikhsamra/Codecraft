@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 border-t border-white/10 pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-white/10 pt-20 pb-10 relative overflow-hidden transition-colors duration-300">
       {/* Decorative Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-fuchsia-500 to-transparent opacity-50"></div>
       
@@ -14,7 +14,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center">
               <img src="/logo.png" alt="CodeCraft Logo" className="h-16 w-16 object-contain hover:scale-110 transition-transform" />
             </Link>
-            <p className="text-gray-400 leading-relaxed max-w-xs">
+            <p className="text-slate-600 dark:text-gray-400 leading-relaxed max-w-xs">
               Empowering creators to share stories, build communities, and craft beautiful code in one unified digital sanctuary.
             </p>
             <div className="flex gap-4">
@@ -22,9 +22,9 @@ const Footer = () => {
                 <a 
                   key={social} 
                   href={`#${social}`} 
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-fuchsia-600 hover:to-cyan-500 hover:border-transparent transition-all group"
+                  className="w-10 h-10 rounded-xl bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-fuchsia-600 hover:to-cyan-500 hover:border-transparent transition-all group"
                 >
-                  <span className="text-gray-400 group-hover:text-white transition-colors uppercase text-[10px] font-bold">{social.substring(0, 2)}</span>
+                  <span className="text-slate-600 dark:text-gray-400 group-hover:text-white transition-colors uppercase text-[10px] font-bold">{social.substring(0, 2)}</span>
                 </a>
               ))}
             </div>
@@ -32,7 +32,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-black mb-6 uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">Navigation</h4>
+            <h4 className="text-lg font-black mb-6 uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-purple-600 dark:from-fuchsia-400 dark:to-purple-400">Navigation</h4>
             <ul className="space-y-4">
               {[
                 { label: "Home", path: "/" },
@@ -42,7 +42,7 @@ const Footer = () => {
                 { label: "Platform Features", path: "/features" }
               ].map((link) => (
                 <li key={link.label}>
-                  <Link to={link.path} className="text-gray-400 hover:text-white hover:translate-x-2 transition-all inline-block">
+                  <Link to={link.path} className="text-slate-600 dark:text-gray-400 hover:text-fuchsia-600 dark:hover:text-white hover:translate-x-2 transition-all inline-block">
                     {link.label}
                   </Link>
                 </li>
@@ -52,11 +52,11 @@ const Footer = () => {
 
           {/* Legal/Support */}
           <div>
-            <h4 className="text-lg font-black mb-6 uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Support</h4>
+            <h4 className="text-lg font-black mb-6 uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400">Support</h4>
             <ul className="space-y-4">
               {["Privacy Policy", "Terms of Service", "Help Center", "Community Guidelines", "Contact Us"].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(/ /g, '-')}`} className="text-gray-400 hover:text-white hover:translate-x-2 transition-all inline-block">
+                  <a href={`#${item.toLowerCase().replace(/ /g, '-')}`} className="text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:translate-x-2 transition-all inline-block">
                     {item}
                   </a>
                 </li>
@@ -66,17 +66,17 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div className="space-y-6">
-            <h4 className="text-lg font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">Newsletter</h4>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <h4 className="text-lg font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500 dark:from-yellow-400 dark:to-orange-400">Newsletter</h4>
+            <p className="text-sm text-slate-600 dark:text-gray-400 leading-relaxed">
               Subscribe to get the latest articles and developer updates directly in your inbox.
             </p>
             <div className="relative group">
               <input 
                 type="email" 
                 placeholder="your@email.com" 
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-fuchsia-500 transition-all text-sm pr-12"
+                className="w-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-fuchsia-500 transition-all text-sm pr-12 text-slate-900 dark:text-white"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-fuchsia-600 to-cyan-500 p-2 rounded-xl hover:scale-105 transition shadow-lg">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-fuchsia-600 to-cyan-500 p-2 rounded-xl hover:scale-105 transition shadow-lg text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                 </svg>
@@ -86,11 +86,11 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500 font-medium">
+        <div className="pt-10 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500 dark:text-gray-500 font-medium">
           <p>© 2026 CodeCraft Platform. Built with ❤️ and the MERN Stack.</p>
           <div className="flex gap-8">
-             <span className="cursor-pointer hover:text-white transition-colors">Local Server: Running</span>
-             <span className="cursor-pointer hover:text-white transition-colors">Cloud: Connected</span>
+             <span className="cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors">Local Server: Running</span>
+             <span className="cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors">Cloud: Connected</span>
           </div>
         </div>
       </div>
