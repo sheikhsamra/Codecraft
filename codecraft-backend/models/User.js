@@ -16,6 +16,23 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
+    },
+
+    savedBlogs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Blog"
+      }
+    ],
+
+    profileImage: {
+      type: String,
+      default: ""
+    },
+
+    bio: {
+      type: String,
+      default: "Hey there! I am using CodeCraft."
     }
   },
   { timestamps: true }

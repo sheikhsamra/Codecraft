@@ -71,7 +71,18 @@ const blogSchema = new mongoose.Schema(
     averageRating: {
       type: Number,
       default: 0
-    }
+    },
+
+    // New Fields
+
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ],
+uniqueViews: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+views: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

@@ -74,17 +74,21 @@ function Navbar() {
             Blogs
           </Link>
 
-          <a href="#categories" className="hover:text-fuchsia-500 transition">
+          <Link to="/CategoryPage" className="hover:text-fuchsia-500 transition">
             Categories
-          </a>
+          </Link>
 
-          <a href="#featured" className="hover:text-fuchsia-500 transition">
+          <Link to="/featured" className="hover:text-fuchsia-500 transition">
             Featured
-          </a>
+          </Link>
 
-          <a href="#about" className="hover:text-fuchsia-500 transition">
+          <Link to="/about" className="hover:text-fuchsia-500 transition">
             About
-          </a>
+          </Link>
+
+          <Link to="/features" className="hover:text-cyan-500 transition">
+            Features
+          </Link>
         </div>
 
         {/* Desktop Right */}
@@ -207,17 +211,21 @@ function Navbar() {
               Blogs
             </Link>
 
-            <a href="#categories" onClick={() => setIsOpen(false)}>
+            <Link to="/CategoryPage" onClick={() => setIsOpen(false)}>
               Categories
-            </a>
+            </Link>
 
-            <a href="#featured" onClick={() => setIsOpen(false)}>
+            <Link to="/featured" onClick={() => setIsOpen(false)}>
               Featured
-            </a>
+            </Link>
 
-            <a href="#about" onClick={() => setIsOpen(false)}>
+            <Link to="/about" onClick={() => setIsOpen(false)}>
               About
-            </a>
+            </Link>
+
+            <Link to="/features" onClick={() => setIsOpen(false)} className="hover:text-cyan-400 transition">
+              Features
+            </Link>
 
             <div
               className={`h-px ${darkMode ? "bg-white/10" : "bg-gray-200"}`}
@@ -238,6 +246,14 @@ function Navbar() {
                   className="font-semibold text-gray-300 hover:text-cyan-400 transition"
                 >
                   My Blogs
+                </Link>
+
+                <Link
+                  to="/saved-blogs"
+                  onClick={() => setIsOpen(false)}
+                  className="font-semibold text-gray-300 hover:text-cyan-400 transition"
+                >
+                  Saved Blogs
                 </Link>
 
                 <Link

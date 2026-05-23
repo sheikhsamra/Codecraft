@@ -7,9 +7,15 @@ import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateBlog from "./pages/CreateBlog";
 import Blogs from "./pages/Blogs";
+import About from "./pages/About";
 import BlogDetails from "./pages/BlogDetails";
 import MyBlogs from "./pages/MyBlogs";
 import EditBlog from "./pages/EditBlog";
+import CategoryPage from "./pages/CategoryPage";
+import SavedBlogs from "./pages/SavedBlogs";
+import Features from "./pages/Features";
+import Featured from "./pages/Featured";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,6 +25,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/featured" element={<Featured />} />
+        <Route path="/CategoryPage" element={<CategoryPage />} />
         <Route path="/blogs/:id" element={<BlogDetails />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
@@ -33,10 +43,10 @@ function App() {
         />
 
         <Route
-          path="/create-blog"
+          path="/saved-blogs"
           element={
             <ProtectedRoute>
-              <CreateBlog />
+              <SavedBlogs />
             </ProtectedRoute>
           }
         />
@@ -51,6 +61,15 @@ function App() {
         />
 
         <Route
+          path="/create-blog"
+          element={
+            <ProtectedRoute>
+              <CreateBlog />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/edit-blog/:id"
           element={
             <ProtectedRoute>
@@ -59,8 +78,10 @@ function App() {
           }
         />
 
-        
+
       </Routes>
+
+      <Footer />
     </div>
   );
 }
