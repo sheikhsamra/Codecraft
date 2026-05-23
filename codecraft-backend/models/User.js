@@ -33,6 +33,11 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
       default: "Hey there! I am using CodeCraft."
+    },
+
+    isAdmin: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

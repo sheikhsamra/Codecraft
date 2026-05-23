@@ -17,12 +17,16 @@ const {
 } = require("../controllers/blogController");
 
 const { protect } = require("../middleware/authMiddleware");
+const { adminProtect } = require("../middleware/adminMiddleware");
 const upload = require("../middleware/uploadMiddleware");
 
 // Public routes with category filter
 // Example: GET /api/blogs?category=Development
 router.get("/", getBlogs);
 router.get("/home", getHomeBlogs);
+
+// Admin route
+router.get("/admin/all-blogs", protect, adminProtect, getBlogs);
 
 // Protected routes
 router.get("/user/my-blogs", protect, getMyBlogs);
